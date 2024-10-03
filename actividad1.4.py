@@ -1,6 +1,18 @@
 import os
 import csv
 
+class Cliente:
+    dni = ""
+    nombre = ""
+    apellido = ""
+    telefono = ""
+
+    def __init__(self, dni, nombre, apellido, telefono):
+        self.dni = dni
+        self.nombre = nombre
+        self.apellido = apellido
+        self.telefono = telefono
+
 # --------------Funciones------------
 def listarClientes():
     with open("clientes_secuencial.txt", "r") as csv_file:
