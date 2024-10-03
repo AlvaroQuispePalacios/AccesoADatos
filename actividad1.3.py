@@ -12,7 +12,9 @@ with open("clientes_secuencial.txt", "r") as csv_file:
     csv_reader = csv.reader(csv_file)
     for row in csv_reader:
         if(row[0] == dni):
+            # Prueba de cambio
             print("Cliente encontrado:")
+
             for data in row:
                 print(data)
             break
