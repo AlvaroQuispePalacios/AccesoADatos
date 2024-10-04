@@ -1,25 +1,14 @@
-import os
 import csv
 
-class Cliente:
-    dni = ""
-    nombre = ""
-    apellido = ""
-    telefono = ""
-
-    def __init__(self, dni, nombre, apellido, telefono):
-        self.dni = dni
-        self.nombre = nombre
-        self.apellido = apellido
-        self.telefono = telefono
-
 # --------------Funciones------------
+# Lista los clientes del fichero
 def listarClientes():
     with open("clientes_secuencial.txt", "r") as csv_file:
         csv_reader = csv.reader(csv_file)
         for row in csv_reader:
             print(row)
 
+# Agrega un nuevo cliente y lo guarda en el fichero
 def agregarCliente():
     datos = list()
     print("Dime el dni")
