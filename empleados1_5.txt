@@ -1,4 +1,0 @@
-Alvaro,Pons,Desarrollador,2500
-Pedro,Pons,Desarrollador,2500
-Luis,Pons,Desarrollador,1000
-Juan,Pons,Desarrollador,3000

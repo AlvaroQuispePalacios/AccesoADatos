@@ -1,22 +1,39 @@
 import csv
 import os.path as path
-# Creación del fichero
+from faker import Faker
+import random
 
+# LLena el fichero con datos
+def llenador():
+    fake = Faker()
+    file = open("empleados1_5.txt","a")
+    i = 0
+    while(i!=1000):
+        i = i + 1
+        fake = Faker()
+        nombre = fake.name()
+        job = fake.job()
+        num = random.randint(1200,5000)
+        resultado = nombre+","+job+","+str(num)+"\n"
+        file.write(resultado)
+
+    print("hecho")
+    file.close()
+
+# Creación del fichero
 if (path.exists("empleados1_5.txt")) != True:
-    with open("empleados1_5.txt", "w") as f:
-        f.write("Juan,Pons,Desarrollador,2500")
+    llenador()
 else:
     print("Leyendo ...\n")
 
 # --------------Funciones------------
-# Lista los empleados del fichero empleados1.5.txt
 def listarEmpleados():
     with open("empleados1_5.txt", "r") as csv_file:
         csv_reader = csv.reader(csv_file)
         for row in csv_reader:
-            print("Nombre: " + row[0] + " " +  row[1])
-            print("Cargo: " + row[2])
-            print("Salario: " + row[3] + "\n")
+            print("Nombre: " + row[0])
+            print("Cargo: " + row[1])
+            print("Salario: " + row[2] + "\n")
 
 
 def agregarEmpleado():
@@ -26,8 +43,9 @@ def agregarEmpleado():
     datos.append(input("Dime el Cargo: "))
     datos.append(input("Dime el Salario: "))
     with open("empleados1_5.txt", "a") as f:
-        f.write("\n" +datos[0]+ "," + datos[1] + "," + datos[2] + "," + datos[3])
+        f.write(datos[0] + " "+ datos[1] + "," + datos[2] + "," + datos[3] + "\n")
     print("Empleado creado correctamente")
+
 
 def modificarSalario(nombre, nuevoSalario):
     empleado = list()
@@ -42,7 +60,7 @@ def modificarSalario(nombre, nuevoSalario):
 
     # Si el empleado existe hace los cambios
     if empleado:
-        empleado[3] = str(nuevoSalario)
+        empleado[2] = str(nuevoSalario)
         empleados.append(empleado)
         # Reescribe el archivo original y hace los cambios 
         with open("empleados1_5.txt", "w") as file:
@@ -51,22 +69,22 @@ def modificarSalario(nombre, nuevoSalario):
     else:
         print("No se ha encontrado al empleado")
 
-    print(empleados)
-# listarEmpleados()
-# modificarSalario("Juan", 3000)
-agregarEmpleado()
-
 
 # ----------------Main----------------
 # Menu que se muestra al usuario
-# salir = False
-# while salir != True:
-#     print("1. Listar clientes\n2. Agregar cliente\n3. Salir")
-#     seleccionar = int(input())
-#     print(seleccionar)
-#     if seleccionar == 1: 
-#         listarClientes()
-#     elif seleccionar == 2:
-#         agregarCliente()
-#     elif seleccionar == 3:
-#         salir = True
+salir = False
+while salir != True:
+    print("1. Listar empleados\n2. Agregar empleado\n3. Modificar salario\n4. Salir")
+    seleccionar = int(input())
+    print(seleccionar)
+    if seleccionar == 1: 
+        listarEmpleados()
+    elif seleccionar == 2:
+        agregarEmpleado()
+    elif seleccionar == 3:
+        nombre = input("Dime el nombre del empleado: ")
+        salario = input("Dime el nuevo salario: ")
+        modificarSalario(nombre, salario)
+    elif seleccionar == 4:
+        salir = True
+        
