@@ -13,9 +13,7 @@ public class Main {
         String url = "jdbc:mysql://localhost:3306/acceso_a_datos";
         try {
             Connection c = DriverManager.getConnection(url, "root", "");
-            // CallableStatement s = c.prepareCall("{call buscar_por_dni(?)}");
             Statement s = c.createStatement();
-            // s.setString(1, "56789012B");
             s.executeQuery("SELECT buscar_por_dni('78901234X')");
             ResultSet rs = s.getResultSet();
 
