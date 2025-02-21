@@ -22,6 +22,12 @@ public class App {
         Departamento departamento2 = new Departamento("departamento2", sede);
         session.save(departamento2);
 
+        Empleado empleado1 = new Empleado("12345678A", "Pedro", departamento1);
+        session.save(empleado1);
+        Empleado empleado2 = new Empleado("12345678B", "Juan", departamento2);
+        session.save(empleado2);
+
+
         tx.commit();
 
         session.close();

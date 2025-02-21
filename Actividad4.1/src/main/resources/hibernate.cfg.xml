@@ -14,5 +14,7 @@
         <!-- Clases mapeadas -->
         <mapping class="org.example.Sede"/>
         <mapping class="org.example.Departamento"/>
+        <mapping class="org.example.Empleado"/>
+
     </session-factory>
 </hibernate-configuration>
