@@ -2,28 +2,33 @@ package org.example;
 
 import jakarta.persistence.*;
 
+
+import jakarta.persistence.*;
+
 @Entity
 @Table(name = "empleado")
 public class Empleado {
+
     @Id
-    @Column(name= "dni")
+    @Column(name= "dni", nullable = false, unique = true)
     private String dni;
 
-    @Column(name = "nom_emp")
+    @Column(name = "nom_emp", nullable = false)
     private String nombreEmpleado;
 
-    @ManyToOne
-    @JoinColumn(name = "id_depto", referencedColumnName = "id_depto", nullable = false)
-    private Departamento idDepartamento;
+    @ManyToOne(fetch = FetchType.LAZY)  // Mejora el rendimiento con Lazy Loading
+    @JoinColumn(name = "id_depto", nullable = false)
+    private Departamento departamento;
 
-    public Empleado(){}
+    public Empleado() {}
 
-    public Empleado(String dni, String nombreEmpleado, Departamento idDepartamento){
+    public Empleado(String dni, String nombreEmpleado, Departamento departamento){
         this.dni = dni;
         this.nombreEmpleado = nombreEmpleado;
-        this.idDepartamento = idDepartamento;
+        this.departamento = departamento;
     }
 
+    // Getters y Setters
     public String getDni() {
         return dni;
     }
@@ -40,11 +45,12 @@ public class Empleado {
         this.nombreEmpleado = nombreEmpleado;
     }
 
-    public Departamento getIdDepartamento() {
-        return idDepartamento;
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
-    public void setIdDepartamento(Departamento idDepartamento) {
-        this.idDepartamento = idDepartamento;
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
+
 }

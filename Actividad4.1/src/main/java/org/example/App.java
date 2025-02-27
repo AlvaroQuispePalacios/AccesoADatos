@@ -12,26 +12,34 @@ public class App {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
 
-        // Crear Sede
-        Sede sede = new Sede("sede1");
-        session.save(sede);
-        //tx.commit();
+        try {
+            // Crear Sede
+            Sede sede = new Sede("sede1");
+//            session.persist(sede);
+//            tx.commit();
 
-        Departamento departamento1 = new Departamento("departamento1", sede);
-        session.save(departamento1);
-        Departamento departamento2 = new Departamento("departamento2", sede);
-        session.save(departamento2);
+            Departamento departamento1 = new Departamento("departamento1", sede);
+//            session.persist(departamento1);
+//            tx.commit();
 
-        Empleado empleado1 = new Empleado("12345678A", "Pedro", departamento1);
-        session.save(empleado1);
-        Empleado empleado2 = new Empleado("12345678B", "Juan", departamento2);
-        session.save(empleado2);
+            Departamento departamento2 = new Departamento("departamento2", sede);
+//            session.persist(departamento2);
+//            tx.commit();
 
 
-        tx.commit();
+            Empleado empleado1 = new Empleado("12345678A", "Pedro", departamento1);
+//            session.persist(empleado1);
+//            tx.commit();
 
-        session.close();
+            Empleado empleado2 = new Empleado("12345678B", "Juan", departamento2);
+//            session.persist(empleado2);
+//            tx.commit();
 
-        System.out.println("✅ Sede guardada con éxito");
+            session.close();
+            System.out.println("✅ Sede guardada con éxito");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
